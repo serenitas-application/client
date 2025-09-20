@@ -9,9 +9,11 @@ import {
   PersonOutline,
 } from "@vicons/ionicons5";
 import { NIcon } from "naive-ui";
-import { h } from "vue";
+import { h, ref } from "vue";
 import { RouterLink } from "vue-router";
 import { useUISettingsStore } from "../../stores/uiSettings";
+import { RoutePaths } from "../../router/routes";
+import { useRoute } from "vue-router";
 
 const titleOptions = [
   {
@@ -24,32 +26,35 @@ const titleOptions = [
 const menuOptions = [
   {
     label: "Home",
-    key: "home",
-    to: "/",
+    key: RoutePaths.main.name,
+    to: RoutePaths.main.path,
   },
   {
     label: "Account",
-    key: "account",
-    to: "/account",
+    key: RoutePaths.account.name,
+    to: RoutePaths.account.path,
   },
   {
     label: "Daily Diary",
-    key: "diary",
-    to: "/diary",
+    key: RoutePaths.diary.name,
+    to: RoutePaths.diary.path,
   },
   {
     label: "Notes",
-    key: "notes",
-    to: "/notes",
+    key: RoutePaths.notes.name,
+    to: RoutePaths.notes.path,
   },
   {
     label: "Settings",
-    key: "settings",
-    to: "/settings",
+    key: RoutePaths.settings.name,
+    to: RoutePaths.settings.path,
   },
 ];
 
+const route = useRoute();
 const uiSettings = useUISettingsStore();
+
+const activeTab = ref(route.name);
 
 function renderMenuLabel(option) {
   if ("to" in option) {
@@ -74,6 +79,10 @@ function renderMenuIcon(option) {
 function expandIcon() {
   return h(NIcon, null, { default: () => h(CaretDownOutline) });
 }
+
+const handleUpdateValue = (key) => {
+  activeTab.value = key;
+};
 </script>
 
 <template>
@@ -104,12 +113,8 @@ function expandIcon() {
       :render-label="renderMenuLabel"
       :render-icon="renderMenuIcon"
       :expand-icon="expandIcon"
+      :value="activeTab"
+      @update:value="handleUpdateValue"
     />
   </n-layout-sider>
 </template>
-
-<style>
-/* .app-sidebar {
-  padding: 12px;
-} */
-</style>
