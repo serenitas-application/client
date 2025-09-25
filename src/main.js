@@ -1,4 +1,5 @@
 import "./css/reset.css";
+import "./css/globals.css";
 import "./css/ui-utils.css";
 import "./css/components.css";
 import App from "./App.vue";

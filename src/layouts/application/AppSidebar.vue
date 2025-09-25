@@ -3,25 +3,17 @@ import {
   BookmarkOutline,
   CaretDownOutline,
   HomeOutline,
-  BookOutline,
   DocumentTextOutline,
   SettingsOutline,
   PersonOutline,
+  JournalOutline,
 } from "@vicons/ionicons5";
 import { NIcon } from "naive-ui";
-import { h, ref } from "vue";
+import { computed, h } from "vue";
 import { RouterLink } from "vue-router";
 import { useUISettingsStore } from "../../stores/uiSettings";
 import { RoutePaths } from "../../router/routes";
 import { useRoute } from "vue-router";
-
-const titleOptions = [
-  {
-    label: () => h("h1", { style: "font-size: 22px; font-weight: bold" }, "Serenitas"),
-    key: "serenitas",
-    icon: () => h("span", { style: "font-size: 26px;" }, "🍀"),
-  },
-];
 
 const menuOptions = [
   {
@@ -35,14 +27,9 @@ const menuOptions = [
     to: RoutePaths.account.path,
   },
   {
-    label: "Daily Diary",
-    key: RoutePaths.diary.name,
-    to: RoutePaths.diary.path,
-  },
-  {
-    label: "Notes",
-    key: RoutePaths.notes.name,
-    to: RoutePaths.notes.path,
+    label: "Journals",
+    key: RoutePaths.journals.name,
+    to: RoutePaths.journals.path,
   },
   {
     label: "Settings",
@@ -54,7 +41,22 @@ const menuOptions = [
 const route = useRoute();
 const uiSettings = useUISettingsStore();
 
-const activeTab = ref(route.name);
+const titleOptions = [
+  {
+    label: () => h("h1", { style: "font-size: 16px; font-weight: 700" }, "Serenitas"),
+    key: "serenitas",
+    icon: () => h("span", { style: "font-size: 22px;" }, "🍀"),
+  },
+];
+
+const currentMenuKey = computed(() => {
+  const p = route.path;
+  if (p === RoutePaths.main.path) return RoutePaths.main.name;
+  if (p.startsWith(RoutePaths.account.path)) return RoutePaths.account.name;
+  if (p.startsWith(RoutePaths.journals.path)) return RoutePaths.journals.name;
+  if (p.startsWith(RoutePaths.settings.path)) return RoutePaths.settings.name;
+  return undefined;
+});
 
 function renderMenuLabel(option) {
   if ("to" in option) {
@@ -67,7 +69,7 @@ function renderMenuIcon(option) {
   const map = {
     home: HomeOutline,
     account: PersonOutline,
-    diary: BookOutline,
+    journals: JournalOutline,
     notes: DocumentTextOutline,
     settings: SettingsOutline,
   };
@@ -79,16 +81,11 @@ function renderMenuIcon(option) {
 function expandIcon() {
   return h(NIcon, null, { default: () => h(CaretDownOutline) });
 }
-
-const handleUpdateValue = (key) => {
-  activeTab.value = key;
-};
 </script>
 
 <template>
   <n-layout-sider
     bordered
-    content-class="app-sidebar"
     collapse-mode="width"
     :collapsed-width="64"
     :width="240"
@@ -113,8 +110,7 @@ const handleUpdateValue = (key) => {
       :render-label="renderMenuLabel"
       :render-icon="renderMenuIcon"
       :expand-icon="expandIcon"
-      :value="activeTab"
-      @update:value="handleUpdateValue"
+      :value="currentMenuKey"
     />
   </n-layout-sider>
 </template>

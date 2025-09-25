@@ -3,11 +3,10 @@ import { computed, ref } from "vue";
 import { RoutePaths } from "../../../router/routes";
 import { apiClient } from "../../../api";
 import { useMessage } from "naive-ui";
-import { useAuthStore } from "../../../stores/auth";
 import { useRouter } from "vue-router";
+import { LockClosedOutline, MailOutline, PersonOutline } from "@vicons/ionicons5";
 
 const message = useMessage();
-const auth = useAuthStore();
 const router = useRouter();
 
 const username = ref("");
@@ -38,28 +37,37 @@ const onRegistration = async () => {
       </div>
       <n-h1 class="m-0">🍀</n-h1>
     </n-space>
-    <n-input v-model:value="username" size="large" type="text" placeholder="Username"></n-input>
-    <n-input
-      v-model:value="email"
-      size="large"
-      type="email"
-      pattern=".+@.+"
-      autocomplete="email"
-      placeholder="Email"
-    ></n-input>
+
+    <n-input v-model:value="username" size="large" type="text" placeholder="Username">
+      <template #prefix>
+        <n-icon :component="PersonOutline" class="input-icon" />
+      </template>
+    </n-input>
+
+    <n-input v-model:value="email" size="large" type="email" pattern=".+@.+" autocomplete="email" placeholder="Email">
+      <template #prefix>
+        <n-icon :component="MailOutline" class="input-icon" />
+      </template>
+    </n-input>
+
     <n-input
       v-model:value="password"
       size="large"
       type="password"
-      show-password-on="mousedown"
+      show-password-on="click"
       placeholder="Password"
       :minlength="4"
       :maxlength="16"
-    />
+    >
+      <template #prefix>
+        <n-icon :component="LockClosedOutline" class="input-icon" />
+      </template>
+    </n-input>
+
     <div>
       <n-button
         size="large"
-        type="success"
+        type="primary"
         class="w-full"
         attr-type="submit"
         :disabled="isDisabled"
