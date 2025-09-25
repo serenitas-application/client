@@ -5,6 +5,7 @@ import { darkTheme, lightTheme } from "naive-ui";
 import { computed } from "vue";
 import { DefaultLayout } from "./layouts/default";
 import { ApplicationLayout } from "./layouts/application";
+import { appThemeList } from "./common/themes";
 
 const uiSettingsStore = useUISettingsStore();
 const route = useRoute();
@@ -22,10 +23,10 @@ const currentLayout = computed(() => {
 </script>
 
 <template>
-  <n-config-provider :theme="themeList[uiSettingsStore.theme]">
+  <n-config-provider :theme="themeList[uiSettingsStore.theme]" :theme-overrides="appThemeList[uiSettingsStore.theme]">
     <n-message-provider>
       <component :is="currentLayout">
-        <router-view />
+        <router-view></router-view>
       </component>
     </n-message-provider>
   </n-config-provider>
