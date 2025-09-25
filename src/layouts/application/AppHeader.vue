@@ -1,19 +1,22 @@
 <script setup>
 import { LogOutOutline } from "@vicons/ionicons5";
 import ThemeSwitcher from "../../modules/common/ThemeSwitcher.vue";
+import { NIcon } from "naive-ui";
 </script>
 
 <template>
-  <n-layout-header bordered class="header flex g-24 j-end">
-    <ThemeSwitcher />
-    <n-tooltip trigger="hover">
-      <template #trigger>
-        <n-icon class="pointer" :size="30">
-          <LogOutOutline />
-        </n-icon>
-      </template>
-      Sign out
-    </n-tooltip>
+  <n-layout-header class="header flex g-24 j-end">
+    <div class="flex g-24 j-end">
+      <ThemeSwitcher />
+      <n-tooltip trigger="hover">
+        <template #trigger>
+          <n-icon class="pointer" :size="30">
+            <LogOutOutline />
+          </n-icon>
+        </template>
+        Sign out
+      </n-tooltip>
+    </div>
   </n-layout-header>
 </template>
 

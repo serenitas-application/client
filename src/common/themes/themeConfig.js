@@ -68,13 +68,16 @@ export const themeConfig = (PALETTE) => ({
         color: PALETTE.surface,
         border: `1px solid ${PALETTE.border}`,
         borderActive: `1px solid ${PALETTE.primary}`,
-        boxShadowFocus: "reg",
         colorActive: PALETTE.surface,
+        boxShadowFocus: "none",
+        boxShadowHover: "none",
+        boxShadowActive: "none",
         colorFocus: PALETTE.surface,
       },
       InternalSelectMenu: {
         color: PALETTE.surface,
         borderRadius: "8px",
+        boxShadowFocus: "none",
         optionTextColorActive: PALETTE.primary,
       },
     },
@@ -117,5 +120,8 @@ export const themeConfig = (PALETTE) => ({
   },
   Divider: {
     color: PALETTE.surface,
+  },
+  Typography: {
+    pMargin: "0",
   },
 });
