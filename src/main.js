@@ -1,5 +1,6 @@
 import "./css/reset.css";
 import "./css/ui-utils.css";
+import "./css/components.css";
 import App from "./App.vue";
 import naive from "naive-ui";
 import { createApp } from "vue";

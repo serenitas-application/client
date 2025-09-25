@@ -1,0 +1,121 @@
+export const RADIUS = {
+  sm: "8px",
+  md: "10px",
+  lg: "12px",
+  xl: "16px",
+};
+
+export const themeConfig = (PALETTE) => ({
+  common: {
+    primaryColor: PALETTE.primary,
+    primaryColorHover: PALETTE.primaryHover,
+    primaryColorPressed: PALETTE.primaryPressed,
+    primaryColorSuppl: PALETTE.primary,
+    baseColor: PALETTE.base,
+    bodyColor: PALETTE.base,
+    textColorBase: PALETTE.text0,
+    textColor1: PALETTE.text1,
+    textColor2: PALETTE.text2,
+    textColor3: PALETTE.text3,
+    cardColor: PALETTE.base,
+    modalColor: PALETTE.base,
+    popoverColor: PALETTE.base,
+    borderColor: PALETTE.border,
+    tableHeaderColor: PALETTE.base,
+    tableColorHover: PALETTE.subtle ?? PALETTE.hoverBg,
+    fontWeightStrong: "600",
+    borderRadius: RADIUS.md,
+  },
+  Layout: {
+    siderColor: PALETTE.surface ?? "transparent",
+    color: PALETTE.base,
+    headerColor: "transparent",
+    footerColor: "transparent",
+    siderBorderColor: PALETTE.border,
+    headerBorderColor: PALETTE.border,
+    footerBorderColor: PALETTE.border,
+  },
+  Card: {
+    color: PALETTE.base,
+    colorEmbedded: "transparent",
+    borderRadius: RADIUS.lg,
+    borderColor: PALETTE.border,
+    actionColor: "transparent",
+  },
+  Button: {
+    borderRadius: RADIUS.md,
+    rippleDuration: "0ms",
+    textColor: PALETTE.text1,
+    colorHoverPrimary: PALETTE.primaryHover,
+    colorPressedPrimary: PALETTE.primaryPressed,
+    colorFocusPrimary: PALETTE.primary,
+    waveOpacity: "0.06",
+  },
+  Input: {
+    borderRadius: RADIUS.md,
+    color: PALETTE.surface ?? PALETTE.add ?? PALETTE.base,
+    colorFocus: PALETTE.surface ?? PALETTE.add ?? PALETTE.base,
+    caretColor: PALETTE.primary,
+    border: `1px solid ${PALETTE.border}`,
+    borderHover: `1px solid ${PALETTE.border}`,
+    borderFocus: `1px solid ${PALETTE.primary}`,
+    boxShadowFocus: "none",
+  },
+  Select: {
+    borderRadius: RADIUS.md,
+    peers: {
+      InternalSelection: {
+        color: PALETTE.surface,
+        border: `1px solid ${PALETTE.border}`,
+        borderActive: `1px solid ${PALETTE.primary}`,
+        boxShadowFocus: "reg",
+        colorActive: PALETTE.surface,
+        colorFocus: PALETTE.surface,
+      },
+      InternalSelectMenu: {
+        color: PALETTE.surface,
+        borderRadius: "8px",
+        optionTextColorActive: PALETTE.primary,
+      },
+    },
+  },
+  AutoComplete: {
+    borderRadius: RADIUS.md,
+  },
+  Tag: {
+    borderRadius: RADIUS.md,
+    color: PALETTE.surface ?? PALETTE.base,
+    border: `1px solid ${PALETTE.border}`,
+    textColor: PALETTE.text2,
+  },
+  Tabs: {
+    tabPaddingMedium: "8px 10px",
+    tabGapMediumBar: "10px",
+    tabColor: "transparent",
+    barColor: PALETTE.border,
+  },
+  Table: {
+    borderColor: PALETTE.border,
+    thColor: PALETTE.base,
+    tdColor: PALETTE.base,
+    tdColorHover: PALETTE.subtle ?? PALETTE.hoverBg,
+  },
+  Message: {
+    borderRadius: RADIUS.md,
+    padding: "10px 12px",
+    colorSuccess: PALETTE.primarySoftBg ?? PALETTE.primary,
+    textColorSuccess: PALETTE.text1,
+  },
+  Notification: {
+    borderRadius: RADIUS.lg,
+  },
+  Modal: {
+    borderRadius: RADIUS.lg,
+  },
+  Popover: {
+    borderRadius: RADIUS.lg,
+  },
+  Divider: {
+    color: PALETTE.surface,
+  },
+});

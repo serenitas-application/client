@@ -1,0 +1,12 @@
+ .clear-input.n-input .n-input-wrapper {
+    padding: 0 !important;
+}
+.clear-input.n-input,
+.clear-input.n-input:not(.n-input--disabled):hover,
+.clear-input.n-input--focus {
+    background-color: transparent !important;
+}
+
+.input-icon {
+    margin-right: 12px; 
+}
