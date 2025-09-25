@@ -64,7 +64,7 @@ const onRegistration = async () => {
       </template>
     </n-input>
 
-    <div>
+    <div class="flex col g-20">
       <n-button
         size="large"
         type="primary"

@@ -48,7 +48,7 @@ const onLogin = async () => {
       </template>
     </n-input>
 
-    <div>
+    <div class="flex col g-20">
       <n-p>
         <router-link :to="RoutePaths.registration.path">
           <n-text type="primary" strong>Forgot password?</n-text>
