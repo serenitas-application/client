@@ -5,6 +5,12 @@ import { apiClient } from "../../../api";
 import { useMessage } from "naive-ui";
 import { useRouter } from "vue-router";
 import { LockClosedOutline, MailOutline, PersonOutline } from "@vicons/ionicons5";
+import AuthForm from "../common/AuthForm.vue";
+
+const formStages = {
+  user: "user",
+  password: "password",
+};
 
 const message = useMessage();
 const router = useRouter();
@@ -12,9 +18,17 @@ const router = useRouter();
 const username = ref("");
 const email = ref("");
 const password = ref("");
+const repeat = ref("");
+const showPassword = ref(false);
 
-const isDisabled = computed(() => {
-  return !email.value || !password.value || !username.value;
+const activeStage = ref(formStages.user);
+
+const isNextDisabled = computed(() => !username.value || !email.value);
+
+const isPasswordsEquals = computed(() => password.value === repeat.value);
+
+const isSubmitDisabled = computed(() => {
+  return !email.value || !password.value || !username.value || !repeat.value || !isPasswordsEquals.value;
 });
 
 const onRegistration = async () => {
@@ -26,61 +40,119 @@ const onRegistration = async () => {
   auth.onLogin();
   router.push(RoutePaths.main);
 };
+
+const onFormNavigate = (value) => {
+  activeStage.value = value;
+};
 </script>
 
 <template>
-  <n-form class="flex col g-20">
-    <n-space justify="space-between">
-      <div>
-        <n-h2 class="m-0">Serenitas</n-h2>
-        <n-p class="m-0">Create your account and start managing Serenitas</n-p>
-      </div>
-      <n-h1 class="m-0">🍀</n-h1>
-    </n-space>
+  <AuthForm>
+    <template #body>
+      <transition name="fade" mode="out-in">
+        <div v-if="activeStage === formStages.user" class="flex col g-16">
+          <div class="fields flex col g-16">
+            <n-input
+              v-model:value="username"
+              size="large"
+              type="text"
+              placeholder="Username"
+              @keyup.enter="onFormNavigate(formStages.password)"
+            >
+              <template #prefix>
+                <n-icon :component="PersonOutline" class="input-icon" />
+              </template>
+            </n-input>
 
-    <n-input v-model:value="username" size="large" type="text" placeholder="Username">
-      <template #prefix>
-        <n-icon :component="PersonOutline" class="input-icon" />
-      </template>
-    </n-input>
+            <n-input
+              v-model:value="email"
+              size="large"
+              type="email"
+              pattern=".+@.+"
+              autocomplete="email"
+              placeholder="Email"
+              @keyup.enter="onFormNavigate(formStages.password)"
+            >
+              <template #prefix>
+                <n-icon :component="MailOutline" class="input-icon" />
+              </template>
+            </n-input>
+          </div>
 
-    <n-input v-model:value="email" size="large" type="email" pattern=".+@.+" autocomplete="email" placeholder="Email">
-      <template #prefix>
-        <n-icon :component="MailOutline" class="input-icon" />
-      </template>
-    </n-input>
+          <n-button
+            ghost
+            size="large"
+            type="primary"
+            class="w-full"
+            :disabled="isNextDisabled"
+            @click="onFormNavigate(formStages.password)"
+          >
+            Next >
+          </n-button>
+        </div>
 
-    <n-input
-      v-model:value="password"
-      size="large"
-      type="password"
-      show-password-on="click"
-      placeholder="Password"
-      :minlength="4"
-      :maxlength="16"
-    >
-      <template #prefix>
-        <n-icon :component="LockClosedOutline" class="input-icon" />
-      </template>
-    </n-input>
+        <div v-else-if="activeStage === formStages.password" class="flex col g-16">
+          <div class="fields flex col g-16">
+            <n-input
+              v-model:value="password"
+              :type="showPassword ? 'text' : 'password'"
+              size="large"
+              placeholder="Password"
+              :minlength="4"
+              :maxlength="16"
+            >
+              <template #prefix>
+                <n-icon :component="LockClosedOutline" class="input-icon" />
+              </template>
+            </n-input>
 
-    <div class="flex col g-20">
-      <n-button
-        size="large"
-        type="primary"
-        class="w-full"
-        attr-type="submit"
-        :disabled="isDisabled"
-        @click="onRegistration"
-      >
-        Sign Up
-      </n-button>
+            <n-input
+              v-model:value="repeat"
+              :type="showPassword ? 'text' : 'password'"
+              size="large"
+              placeholder="Repeat"
+              :minlength="4"
+              :maxlength="16"
+            >
+              <template #prefix>
+                <n-icon :component="LockClosedOutline" class="input-icon" />
+              </template>
+            </n-input>
+
+            <div class="flex g-12 i-center">
+              <n-checkbox v-model:checked="showPassword" size="large"> </n-checkbox>
+              <n-text> Show password</n-text>
+            </div>
+          </div>
+          <div class="flex col g-16">
+            <n-button
+              type="primary"
+              class="w-full"
+              size="large"
+              attr-type="submit"
+              :disabled="isSubmitDisabled"
+              @click="onRegistration"
+            >
+              Sign Up
+            </n-button>
+            <n-button size="large" type="primary" class="w-full" ghost @click="onFormNavigate(formStages.user)">
+              < Back
+            </n-button>
+          </div>
+        </div>
+      </transition>
       <n-p align="center">
         Already have an account?
         <router-link :to="RoutePaths.login.path">
           <n-text type="primary" strong>Sign in</n-text>
         </router-link>
       </n-p>
-    </div>
-  </n-form>
+    </template>
+  </AuthForm>
 </template>
+
+<style scoped>
+.fields {
+  margin: 8px 0;
+}
+</style>

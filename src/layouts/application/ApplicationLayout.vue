@@ -9,7 +9,11 @@ import AppSidebar from "./AppSidebar.vue";
     <n-layout>
       <AppHeader />
       <n-layout-content content-class="app-content">
-        <router-view></router-view>
+        <router-view v-slot="{ Component }">
+          <transition name="fade" mode="out-in">
+            <component :is="Component" />
+          </transition>
+        </router-view>
       </n-layout-content>
     </n-layout>
   </n-layout>

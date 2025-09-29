@@ -14,6 +14,7 @@ import { RouterLink } from "vue-router";
 import { useUISettingsStore } from "../../stores/uiSettings";
 import { RoutePaths } from "../../router/routes";
 import { useRoute } from "vue-router";
+import SerenitasLogo from "../../assets/serenitas_logo.svg";
 
 const menuOptions = [
   {
@@ -45,7 +46,7 @@ const titleOptions = [
   {
     label: () => h("h1", { style: "font-size: 16px; font-weight: 700" }, "Serenitas"),
     key: "serenitas",
-    icon: () => h("span", { style: "font-size: 22px;" }, "🍀"),
+    icon: () => h(SerenitasLogo, { style: "fill: #8E7CC3;" }),
   },
 ];
 
@@ -97,10 +98,11 @@ function expandIcon() {
     <n-menu
       :collapsed="uiSettings.sidebarState"
       :collapsed-width="64"
-      :collapsed-icon-size="22"
+      :collapsed-icon-size="32"
       :options="titleOptions"
       :expand-icon="expandIcon"
       style="pointer-events: none"
+      class="logoc"
     />
     <n-menu
       :collapsed="uiSettings.sidebarState"
