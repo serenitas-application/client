@@ -10,6 +10,8 @@ const toCreatePage = () =>
 
 <template>
   <div class="flex">
-    <n-button @click="toCreatePage"> Add new </n-button>
+    <n-button @click="toCreatePage">
+      Add new
+    </n-button>
   </div>
 </template>

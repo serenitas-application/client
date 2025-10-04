@@ -166,7 +166,9 @@ const onFormNavigate = (value) => {
       <n-p align="center">
         Already have an account?
         <router-link :to="RoutePaths.login.path">
-          <n-text type="primary" strong> Sign in </n-text>
+          <n-text type="primary" strong>
+            Sign in
+          </n-text>
         </router-link>
       </n-p>
     </template>

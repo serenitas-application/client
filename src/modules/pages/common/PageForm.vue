@@ -36,7 +36,7 @@ const isDisabled = computed(() => {
         placeholder="Enter title..."
         size="large"
         :bordered="false"
-      ></n-input>
+      />
       <div class="flex i-center g-8">
         <n-button type="error" class="g-4">
           <template #icon>
@@ -91,7 +91,7 @@ const isDisabled = computed(() => {
         </n-icon>
         <n-p>Groupe</n-p>
       </div>
-      <n-select v-model:value="groups" :options="groupOptions" class="input"></n-select>
+      <n-select v-model:value="groups" :options="groupOptions" class="input" />
     </div>
 
     <div class="flex i-center">
@@ -101,18 +101,18 @@ const isDisabled = computed(() => {
         </n-icon>
         <n-p>Secret key</n-p>
       </div>
-      <n-input placeholder="Secret key..." class="input" type="password" show-password-on="click"></n-input>
+      <n-input placeholder="Secret key..." class="input" type="password" show-password-on="click" />
     </div>
 
-    <n-divider class="line"></n-divider>
+    <n-divider class="line" />
     <n-input
+      v-model:value="content"
       type="textarea"
       placeholder="Write here your minds..."
-      v-model:value="content"
       class="textarea clear-input"
       :bordered="false"
       :resizable="false"
-    ></n-input>
+    />
   </n-form>
 </template>
 

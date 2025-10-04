@@ -11,7 +11,7 @@ import AppSidebar from './AppSidebar.vue';
       <n-layout-content content-class="app-content">
         <router-view v-slot="{ Component, route }">
           <transition name="fade" mode="out-in" appear>
-            <component :is="Component" :key="route.fullPath"></component>
+            <component :is="Component" :key="route.fullPath" />
           </transition>
         </router-view>
       </n-layout-content>
