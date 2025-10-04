@@ -2,11 +2,13 @@
 import {
   BookmarkOutline,
   CaretDownOutline,
-  HomeOutline,
+  BookOutline,
+  CalendarNumberOutline,
   DocumentTextOutline,
   SettingsOutline,
   PersonOutline,
   JournalOutline,
+  GridOutline,
 } from "@vicons/ionicons5";
 import { NIcon } from "naive-ui";
 import { computed, h } from "vue";
@@ -23,14 +25,24 @@ const menuOptions = [
     to: RoutePaths.main.path,
   },
   {
+    label: "Schedule",
+    key: RoutePaths.schedule.name,
+    to: RoutePaths.schedule.path,
+  },
+  {
+    label: "Pages",
+    key: RoutePaths.pages.name,
+    to: RoutePaths.pages.path,
+  },
+  {
+    label: "Diary",
+    key: RoutePaths.diary.name,
+    to: RoutePaths.diary.path,
+  },
+  {
     label: "Account",
     key: RoutePaths.account.name,
     to: RoutePaths.account.path,
-  },
-  {
-    label: "Journals",
-    key: RoutePaths.journals.name,
-    to: RoutePaths.journals.path,
   },
   {
     label: "Settings",
@@ -54,7 +66,8 @@ const currentMenuKey = computed(() => {
   const p = route.path;
   if (p === RoutePaths.main.path) return RoutePaths.main.name;
   if (p.startsWith(RoutePaths.account.path)) return RoutePaths.account.name;
-  if (p.startsWith(RoutePaths.journals.path)) return RoutePaths.journals.name;
+  if (p.startsWith(RoutePaths.pages.path)) return RoutePaths.pages.name;
+  if (p.startsWith(RoutePaths.schedule.path)) return RoutePaths.schedule.name;
   if (p.startsWith(RoutePaths.settings.path)) return RoutePaths.settings.name;
   return undefined;
 });
@@ -68,10 +81,11 @@ function renderMenuLabel(option) {
 
 function renderMenuIcon(option) {
   const map = {
-    home: HomeOutline,
+    home: GridOutline,
     account: PersonOutline,
-    journals: JournalOutline,
-    notes: DocumentTextOutline,
+    pages: JournalOutline,
+    diary: BookOutline,
+    schedule: CalendarNumberOutline,
     settings: SettingsOutline,
   };
 

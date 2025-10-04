@@ -1,6 +1,6 @@
 <script setup>
 import { computed, ref } from "vue";
-import JournalForm from "../common/JournalForm.vue";
+import JournalForm from "../common/PageForm.vue";
 
 const journalData = ref({
   title: "",
