@@ -6,7 +6,10 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "eslint --ext .js,.ts,.vue src",
+    "lint:fix": "eslint --fix --ext .js,.ts,.vue src",
+    "format": "prettier --write ."
   },
   "dependencies": {
     "@tanstack/vue-query": "^5.87.4",
@@ -17,7 +20,16 @@
     "vue-router": "^4.5.1"
   },
   "devDependencies": {
+    "@eslint/css": "^0.11.1",
+    "@eslint/js": "^9.37.0",
+    "@eslint/json": "^0.13.2",
+    "@eslint/markdown": "^7.3.0",
     "@vitejs/plugin-vue": "^6.0.1",
+    "@vue/eslint-config-prettier": "^10.2.0",
+    "eslint": "^9.37.0",
+    "eslint-plugin-vue": "^10.5.0",
+    "globals": "^16.4.0",
+    "prettier": "^3.6.2",
     "vite": "^7.1.2",
     "vite-svg-loader": "^5.1.0"
   }

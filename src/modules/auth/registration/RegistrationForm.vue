@@ -1,24 +1,28 @@
 <script setup>
-import { computed, ref } from "vue";
-import { RoutePaths } from "../../../router/routes";
-import { apiClient } from "../../../api";
-import { useMessage } from "naive-ui";
-import { useRouter } from "vue-router";
-import { LockClosedOutline, MailOutline, PersonOutline } from "@vicons/ionicons5";
-import AuthForm from "../common/AuthForm.vue";
+import { computed, ref } from 'vue';
+import { RoutePaths } from '../../../router/routes';
+import { apiClient } from '../../../api';
+import { useMessage } from 'naive-ui';
+import { useRouter } from 'vue-router';
+import {
+  LockClosedOutline,
+  MailOutline,
+  PersonOutline,
+} from '@vicons/ionicons5';
+import AuthForm from '../common/AuthForm.vue';
 
 const formStages = {
-  user: "user",
-  password: "password",
+  user: 'user',
+  password: 'password',
 };
 
 const message = useMessage();
 const router = useRouter();
 
-const username = ref("");
-const email = ref("");
-const password = ref("");
-const repeat = ref("");
+const username = ref('');
+const email = ref('');
+const password = ref('');
+const repeat = ref('');
 const showPassword = ref(false);
 
 const activeStage = ref(formStages.user);
@@ -28,16 +32,25 @@ const isNextDisabled = computed(() => !username.value || !email.value);
 const isPasswordsEquals = computed(() => password.value === repeat.value);
 
 const isSubmitDisabled = computed(() => {
-  return !email.value || !password.value || !username.value || !repeat.value || !isPasswordsEquals.value;
+  return (
+    !email.value ||
+    !password.value ||
+    !username.value ||
+    !repeat.value ||
+    !isPasswordsEquals.value
+  );
 });
 
 const onRegistration = async () => {
-  const payload = { username: username.value, email: email.value, password: password.value };
+  const payload = {
+    username: username.value,
+    email: email.value,
+    password: password.value,
+  };
   const res = await apiClient.auth.registration(payload);
   if (!res.data) {
     return message.error(res.message);
   }
-  auth.onLogin();
   router.push(RoutePaths.main);
 };
 
@@ -91,7 +104,10 @@ const onFormNavigate = (value) => {
           </n-button>
         </div>
 
-        <div v-else-if="activeStage === formStages.password" class="flex col g-16">
+        <div
+          v-else-if="activeStage === formStages.password"
+          class="flex col g-16"
+        >
           <div class="fields flex col g-16">
             <n-input
               v-model:value="password"
@@ -120,7 +136,7 @@ const onFormNavigate = (value) => {
             </n-input>
 
             <div class="flex g-12 i-center">
-              <n-checkbox v-model:checked="showPassword" size="large"> </n-checkbox>
+              <n-checkbox v-model:checked="showPassword" size="large" />
               <n-text> Show password</n-text>
             </div>
           </div>
@@ -135,8 +151,14 @@ const onFormNavigate = (value) => {
             >
               Sign Up
             </n-button>
-            <n-button size="large" type="primary" class="w-full" ghost @click="onFormNavigate(formStages.user)">
-              < Back
+            <n-button
+              size="large"
+              type="primary"
+              class="w-full"
+              ghost
+              @click="onFormNavigate(formStages.user)"
+            >
+              Back
             </n-button>
           </div>
         </div>
@@ -144,7 +166,7 @@ const onFormNavigate = (value) => {
       <n-p align="center">
         Already have an account?
         <router-link :to="RoutePaths.login.path">
-          <n-text type="primary" strong>Sign in</n-text>
+          <n-text type="primary" strong> Sign in </n-text>
         </router-link>
       </n-p>
     </template>

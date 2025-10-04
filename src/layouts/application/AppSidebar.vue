@@ -4,48 +4,47 @@ import {
   CaretDownOutline,
   BookOutline,
   CalendarNumberOutline,
-  DocumentTextOutline,
   SettingsOutline,
   PersonOutline,
   JournalOutline,
   GridOutline,
-} from "@vicons/ionicons5";
-import { NIcon } from "naive-ui";
-import { computed, h } from "vue";
-import { RouterLink } from "vue-router";
-import { useUISettingsStore } from "../../stores/uiSettings";
-import { RoutePaths } from "../../router/routes";
-import { useRoute } from "vue-router";
-import SerenitasLogo from "../../assets/serenitas_logo.svg";
+} from '@vicons/ionicons5';
+import { NIcon } from 'naive-ui';
+import { computed, h } from 'vue';
+import { RouterLink } from 'vue-router';
+import { useUISettingsStore } from '../../stores/uiSettings';
+import { RoutePaths } from '../../router/routes';
+import { useRoute } from 'vue-router';
+import SerenitasLogo from '../../assets/serenitas_logo.svg';
 
 const menuOptions = [
   {
-    label: "Home",
+    label: 'Home',
     key: RoutePaths.main.name,
     to: RoutePaths.main.path,
   },
   {
-    label: "Schedule",
+    label: 'Schedule',
     key: RoutePaths.schedule.name,
     to: RoutePaths.schedule.path,
   },
   {
-    label: "Pages",
+    label: 'Pages',
     key: RoutePaths.pages.name,
     to: RoutePaths.pages.path,
   },
   {
-    label: "Diary",
+    label: 'Diary',
     key: RoutePaths.diary.name,
     to: RoutePaths.diary.path,
   },
   {
-    label: "Account",
+    label: 'Account',
     key: RoutePaths.account.name,
     to: RoutePaths.account.path,
   },
   {
-    label: "Settings",
+    label: 'Settings',
     key: RoutePaths.settings.name,
     to: RoutePaths.settings.path,
   },
@@ -56,9 +55,10 @@ const uiSettings = useUISettingsStore();
 
 const titleOptions = [
   {
-    label: () => h("h1", { style: "font-size: 16px; font-weight: 700" }, "Serenitas"),
-    key: "serenitas",
-    icon: () => h(SerenitasLogo, { style: "fill: #8E7CC3;" }),
+    label: () =>
+      h('h1', { style: 'font-size: 16px; font-weight: 700' }, 'Serenitas'),
+    key: 'serenitas',
+    icon: () => h(SerenitasLogo, { style: 'fill: #8E7CC3;' }),
   },
 ];
 
@@ -73,7 +73,7 @@ const currentMenuKey = computed(() => {
 });
 
 function renderMenuLabel(option) {
-  if ("to" in option) {
+  if ('to' in option) {
     return h(RouterLink, { to: option.to }, { default: () => option.label });
   }
   return option.label;

@@ -1,21 +1,23 @@
 <script setup>
-import { computed, ref } from "vue";
-import JournalForm from "../common/PageForm.vue";
+import { computed, ref } from 'vue';
+import PageForm from '../common/PageForm.vue';
 
-const journalData = ref({
-  title: "",
-  content: "",
-  moods: "",
+const pageData = ref({
+  title: '',
+  content: '',
+  moods: '',
 });
 const group = ref([]);
 
 const isDisabled = computed(() => {
-  return !title.value || !content.value;
+  return !pageData.value.title || !pageData.value.content;
 });
+
+console.log(isDisabled);
 </script>
 
 <template>
-  <JournalForm :journal-data="journalData" :group="group" />
+  <PageForm :journal-data="journalData" :group="group" />
 </template>
 
 <style scoped></style>
