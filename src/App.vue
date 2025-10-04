@@ -26,7 +26,11 @@ const currentLayout = computed(() => {
   <n-config-provider :theme="themeList[uiSettingsStore.theme]" :theme-overrides="appThemeList[uiSettingsStore.theme]">
     <n-message-provider>
       <component :is="currentLayout">
-        <router-view></router-view>
+        <router-view v-slot="{ Component }">
+          <transition name="fade" mode="out-in">
+            <component :is="Component" :key="$route.fullPath"></component>
+          </transition>
+        </router-view>
       </component>
     </n-message-provider>
   </n-config-provider>

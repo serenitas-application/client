@@ -1,9 +1,4 @@
 export const LIGHT_THEME = {
-  primary: "#E67E22",
-  primaryHover: "#F08C2D",
-  primaryPressed: "#CC6F1C",
-  primarySoftBg: "#FFF3E6",
-
   base: "#ffffff",
   surface: "#f9f8f7",
   surfaceElev: "#f9f8f7",

@@ -1,1 +1,3 @@
-<template>Account Page</template>
+<template>
+  <div>Account Page</div>
+</template>

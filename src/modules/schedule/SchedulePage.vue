@@ -1,3 +1,3 @@
 <template>
-  <div>Settings</div>
+  <div>Schedule</div>
 </template>

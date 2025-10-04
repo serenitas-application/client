@@ -1,3 +1,20 @@
+export const appColors = {
+  primary: "#8E7CC3",
+  primaryHover: "#A898D6",
+  primaryPressed: "#6F5FA0",
+  primarySoftBg: "#F4F1FA",
+
+  errorColor: "#E88080",
+  errorColorHover: "#DB6A6A",
+  errorColorPressed: "#C74F4F",
+  errorColorSuppl: "#F2B1B1",
+
+  successColor: "#6CC688",
+  successColorHover: "#55B174",
+  successColorPressed: "#3E955F",
+  successColorSuppl: "#A4DEB8",
+};
+
 export const RADIUS = {
   sm: "8px",
   md: "10px",
@@ -7,10 +24,21 @@ export const RADIUS = {
 
 export const themeConfig = (PALETTE) => ({
   common: {
-    primaryColor: PALETTE.primary,
-    primaryColorHover: PALETTE.primaryHover,
-    primaryColorPressed: PALETTE.primaryPressed,
-    primaryColorSuppl: PALETTE.primary,
+    primaryColor: appColors.primary,
+    primaryColorHover: appColors.primaryHover,
+    primaryColorPressed: appColors.primaryPressed,
+    primaryColorSuppl: appColors.primary,
+
+    errorColor: appColors.errorColor,
+    errorColorHover: appColors.errorColorHover,
+    errorColorPressed: appColors.errorColorPressed,
+    errorColorSuppl: appColors.errorColorSuppl,
+
+    successColor: appColors.successColor,
+    successColorHover: appColors.successColorHover,
+    successColorPressed: appColors.successColorPressed,
+    successColorSuppl: appColors.successColorSuppl,
+
     baseColor: PALETTE.base,
     bodyColor: PALETTE.base,
     textColorBase: PALETTE.text0,
@@ -46,19 +74,19 @@ export const themeConfig = (PALETTE) => ({
     borderRadius: RADIUS.md,
     rippleDuration: "0ms",
     textColor: PALETTE.text1,
-    colorHoverPrimary: PALETTE.primaryHover,
-    colorPressedPrimary: PALETTE.primaryPressed,
-    colorFocusPrimary: PALETTE.primary,
+    colorHoverPrimary: appColors.primaryHover,
+    colorPressedPrimary: appColors.primaryPressed,
+    colorFocusPrimary: appColors.primary,
     waveOpacity: "0.06",
   },
   Input: {
     borderRadius: RADIUS.md,
     color: PALETTE.surface ?? PALETTE.add ?? PALETTE.base,
     colorFocus: PALETTE.surface ?? PALETTE.add ?? PALETTE.base,
-    caretColor: PALETTE.primary,
+    caretColor: appColors.primary,
     border: `1px solid ${PALETTE.border}`,
     borderHover: `1px solid ${PALETTE.border}`,
-    borderFocus: `1px solid ${PALETTE.primary}`,
+    borderFocus: `1px solid ${appColors.primary}`,
     boxShadowFocus: "none",
   },
   Select: {
@@ -67,7 +95,7 @@ export const themeConfig = (PALETTE) => ({
       InternalSelection: {
         color: PALETTE.surface,
         border: `1px solid ${PALETTE.border}`,
-        borderActive: `1px solid ${PALETTE.primary}`,
+        borderActive: `1px solid ${appColors.primary}`,
         colorActive: PALETTE.surface,
         boxShadowFocus: "none",
         boxShadowHover: "none",
@@ -78,7 +106,7 @@ export const themeConfig = (PALETTE) => ({
         color: PALETTE.surface,
         borderRadius: "8px",
         boxShadowFocus: "none",
-        optionTextColorActive: PALETTE.primary,
+        optionTextColorActive: appColors.primary,
       },
     },
   },
@@ -106,7 +134,7 @@ export const themeConfig = (PALETTE) => ({
   Message: {
     borderRadius: RADIUS.md,
     padding: "10px 12px",
-    colorSuccess: PALETTE.primarySoftBg ?? PALETTE.primary,
+    colorSuccess: appColors.primarySoftBg ?? appColors.primary,
     textColorSuccess: PALETTE.text1,
   },
   Notification: {

@@ -1,9 +1,4 @@
 export const DARK_THEME = {
-  primary: "#E67E22",
-  primaryHover: "#F08C2D",
-  primaryPressed: "#CC6F1C",
-  primarySoftBg: "rgba(230,126,34,.12)",
-
   base: "#191919",
   surface: "#202020",
   surfaceElev: "#202020",
