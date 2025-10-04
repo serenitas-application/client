@@ -12,10 +12,10 @@ const isThemeDark = computed(() => uiSettingsStore.theme === "dark");
   <div>
     <n-tooltip trigger="hover">
       <template #trigger>
-        <n-icon class="pointer" :size="22" v-if="isThemeDark" @click="uiSettingsStore.switchTheme">
+        <n-icon v-if="isThemeDark" class="pointer" :size="22" @click="uiSettingsStore.switchTheme">
           <MoonOutline />
         </n-icon>
-        <n-icon class="pointer" :size="22" v-else @click="uiSettingsStore.switchTheme">
+        <n-icon v-else class="pointer" :size="22" @click="uiSettingsStore.switchTheme">
           <SunnyOutline />
         </n-icon>
       </template>

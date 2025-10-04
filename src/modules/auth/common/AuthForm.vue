@@ -11,11 +11,15 @@ import SerenitasLogo from "../../../assets/serenitas_logo.svg";
       </n-icon>
       <slot name="title">
         <div>
-          <n-h2 class="m-0">Serenitas</n-h2>
-          <n-p class="m-0">Your private space for clarity</n-p>
+          <n-h2 class="m-0">
+            Serenitas
+          </n-h2>
+          <n-p class="m-0">
+            Your private space for clarity
+          </n-p>
         </div>
       </slot>
     </div>
-    <slot name="body"></slot>
+    <slot name="body" />
   </n-form>
 </template>

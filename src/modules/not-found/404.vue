@@ -14,7 +14,9 @@ function goHome() {
   <n-card class="not-found">
     <n-result status="404" title="404" description="Page not found">
       <template #footer>
-        <n-button type="primary" @click="goHome">Go home</n-button>
+        <n-button type="primary" @click="goHome">
+          Go home
+        </n-button>
       </template>
     </n-result>
   </n-card>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import AppHeader from "./AppHeader.vue";
-import AppSidebar from "./AppSidebar.vue";
+import AppHeader from './AppHeader.vue';
+import AppSidebar from './AppSidebar.vue';
 </script>
 
 <template>
@@ -11,7 +11,7 @@ import AppSidebar from "./AppSidebar.vue";
       <n-layout-content content-class="app-content">
         <router-view v-slot="{ Component, route }">
           <transition name="fade" mode="out-in" appear>
-            <component :is="Component" :key="route.fullPath"></component>
+            <component :is="Component" :key="route.fullPath" />
           </transition>
         </router-view>
       </n-layout-content>

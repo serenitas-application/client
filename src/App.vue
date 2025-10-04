@@ -28,7 +28,7 @@ const currentLayout = computed(() => {
       <component :is="currentLayout">
         <router-view v-slot="{ Component }">
           <transition name="fade" mode="out-in">
-            <component :is="Component" :key="$route.fullPath"></component>
+            <component :is="Component" :key="$route.fullPath" />
           </transition>
         </router-view>
       </component>
