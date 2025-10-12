@@ -1,11 +1,11 @@
 <script setup>
-import { useRoute } from "vue-router";
-import { useUISettingsStore } from "./stores/uiSettings";
-import { darkTheme, lightTheme } from "naive-ui";
-import { computed } from "vue";
-import { DefaultLayout } from "./layouts/default";
-import { ApplicationLayout } from "./layouts/application";
-import { appThemeList } from "./common/themes";
+import { useRoute } from 'vue-router';
+import { useUISettingsStore } from './stores/uiSettings';
+import { darkTheme, lightTheme } from 'naive-ui';
+import { computed } from 'vue';
+import { DefaultLayout } from './layouts/default';
+import { ApplicationLayout } from './layouts/application';
+import { appThemeList } from './common/themes';
 
 const uiSettingsStore = useUISettingsStore();
 const route = useRoute();
@@ -17,13 +17,16 @@ const themeList = {
 };
 
 const currentLayout = computed(() => {
-  const key = route.meta.layout || "default";
+  const key = route.meta.layout || 'default';
   return layouts[key] ?? layouts.default;
 });
 </script>
 
 <template>
-  <n-config-provider :theme="themeList[uiSettingsStore.theme]" :theme-overrides="appThemeList[uiSettingsStore.theme]">
+  <n-config-provider
+    :theme="themeList[uiSettingsStore.theme]"
+    :theme-overrides="appThemeList[uiSettingsStore.theme]"
+  >
     <n-message-provider>
       <component :is="currentLayout">
         <router-view v-slot="{ Component }">

@@ -1,19 +1,24 @@
-import { useAccountStore } from "../stores/account";
-
-const ACCOUNT_INFO_LOCAL_STORAGE = "asldjsan";
+import { ACCOUNT_LS } from '../common/consts/local-storage';
+import { useAccountStore } from '../stores/account';
 
 export function useAuth() {
   const account = useAccountStore();
 
   async function login(payload) {
     account.setAccount(payload);
-    localStorage.setItem(ACCOUNT_INFO_LOCAL_STORAGE, JSON.stringify(payload));
+    localStorage.setItem(ACCOUNT_LS, JSON.stringify(payload));
   }
 
   async function logout() {
     account.resetAccount();
-    localStorage.removeItem(ACCOUNT_INFO_LOCAL_STORAGE);
+    localStorage.removeItem(ACCOUNT_LS);
   }
 
-  return { login, logout };
+  function getAccountInfo() {
+    const account = localStorage.getItem(ACCOUNT_LS);
+    if (!account) return;
+    return JSON.parse(account);
+  }
+
+  return { login, logout, getAccountInfo };
 }
