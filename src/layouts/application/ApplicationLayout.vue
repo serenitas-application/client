@@ -21,7 +21,6 @@ onMounted(async () => {
     return message.error(result.message, { duration: 5000 });
   }
   auth.login(result.data);
-  router.push(RoutePaths.main);
 });
 </script>
 
