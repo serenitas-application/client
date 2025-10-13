@@ -3,12 +3,12 @@ export const createTransport = (instance) => ({
     const response = await instance(url, params);
     return response.json();
   },
-  post: async (url, data) => {
+  post: async (url, data = {}) => {
     const payload = JSON.stringify(data);
     const response = await instance(url, {
-      method: "POST",
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: payload,
     });
@@ -17,9 +17,9 @@ export const createTransport = (instance) => ({
   patch: async (url, data) => {
     const payload = JSON.stringify(data);
     const response = await instance(url, {
-      method: "PATCH",
+      method: 'PATCH',
       headers: {
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: payload,
     });
@@ -27,7 +27,7 @@ export const createTransport = (instance) => ({
   },
   delete: async (url) => {
     const response = await instance(url, {
-      method: "DELETE",
+      method: 'DELETE',
     });
     return response.json();
   },

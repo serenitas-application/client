@@ -1,8 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/(.*)",
-      "destination": "/"
+      "source": "/:path*",
+      "destination": "https://your-render-service-name.onrender.com/:path*"
     }
   ]
 }

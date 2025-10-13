@@ -1,7 +1,20 @@
 <script setup>
-import { LogOutOutline } from "@vicons/ionicons5";
-import ThemeSwitcher from "../../modules/common/ThemeSwitcher.vue";
-import { NIcon } from "naive-ui";
+import { LogOutOutline } from '@vicons/ionicons5';
+import ThemeSwitcher from '../../modules/common/ThemeSwitcher.vue';
+import { NIcon } from 'naive-ui';
+import { apiClient } from '../../api';
+import { useAuth } from '../../composables/auth';
+import { useRouter } from 'vue-router';
+import { RoutePaths } from '../../router/routes';
+
+const router = useRouter();
+const auth = useAuth();
+
+const onLogout = async () => {
+  await apiClient.auth.logout();
+  auth.logout();
+  router.push(RoutePaths.login);
+};
 </script>
 
 <template>
@@ -10,7 +23,7 @@ import { NIcon } from "naive-ui";
       <ThemeSwitcher />
       <n-tooltip trigger="hover">
         <template #trigger>
-          <n-icon class="pointer" :size="22">
+          <n-icon class="pointer" :size="22" @click="onLogout">
             <LogOutOutline />
           </n-icon>
         </template>
