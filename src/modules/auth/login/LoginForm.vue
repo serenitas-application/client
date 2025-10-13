@@ -7,6 +7,7 @@ import { useRouter } from 'vue-router';
 import { MailOutline, LockClosedOutline } from '@vicons/ionicons5';
 import { useAuth } from '../../../composables/auth';
 import AuthForm from '../common/AuthForm.vue';
+import { useMutation } from '@tanstack/vue-query';
 
 const message = useMessage();
 const auth = useAuth();
@@ -19,17 +20,23 @@ const isDisabled = computed(() => {
   return !email.value || !password.value;
 });
 
-const onLogin = async () => {
-  const res = await apiClient.auth.login({
-    email: email.value,
-    password: password.value,
-  });
-  if (!res.data) {
-    return message.error(res.message, { duration: 5000 });
-  }
-  auth.login(res.data);
-  router.push(RoutePaths.main);
-};
+const { mutate: onLogin, isPending: isLoading } = useMutation({
+  mutationFn: async () => {
+    const res = await apiClient.auth.login({
+      email: email.value,
+      password: password.value,
+    });
+    if (!res.data) throw new Error(res.message || 'Login failed');
+    return res.data;
+  },
+  onSuccess: (data) => {
+    auth.login(data);
+    router.push(RoutePaths.main);
+  },
+  onError: (err) => {
+    message.error(err.message || 'Login failed', { duration: 5000 });
+  },
+});
 </script>
 
 <template>
@@ -70,7 +77,7 @@ const onLogin = async () => {
           type="primary"
           class="w-full"
           attr-type="submit"
-          :disabled="isDisabled"
+          :disabled="isDisabled || isLoading"
           @click="onLogin"
         >
           Sign In
