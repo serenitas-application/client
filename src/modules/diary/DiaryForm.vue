@@ -1,32 +1,30 @@
 <script setup>
-import { SaveOutline, SparklesOutline } from '@vicons/ionicons5';
+import { SaveOutline } from '@vicons/ionicons5';
 import { computed, ref } from 'vue';
-import DatePicker from './DatePicker.vue';
 import { formatDateWithWeekday } from '../../common/utils/dates';
+import { DatePicker } from '../common';
+import DiarySecretKey from './DiarySecretKey.vue';
 
-const date = ref(new Date());
+const title = ref(new Date());
+const content = ref('');
+const secretKey = ref('');
 
-const diaryTitle = computed(() => formatDateWithWeekday(date.value));
+const diaryTitle = computed(() => formatDateWithWeekday(title.value));
+const isDisabled = computed(() => !content.value);
 </script>
 
 <template>
   <n-form class="journal-form">
     <div class="flex i-center j-between">
       <div class="flex i-center j-between g-12 relative">
-        <n-h2 style="font-weight: 600" class="m-0">{{ diaryTitle }}</n-h2>
-
-        <DatePicker v-model="date" />
+        <n-h3 style="font-weight: 600" class="m-0">
+          {{ diaryTitle }}
+        </n-h3>
+        <DatePicker v-model="title" />
       </div>
 
       <div class="flex i-center g-8">
-        <n-button type="error" class="g-4">
-          <template #icon>
-            <n-icon>
-              <SparklesOutline />
-            </n-icon>
-          </template>
-          Clear
-        </n-button>
+        <DiarySecretKey v-model:secret="secretKey" />
         <n-button
           type="primary"
           class="g-4"
@@ -38,7 +36,7 @@ const diaryTitle = computed(() => formatDateWithWeekday(date.value));
               <SaveOutline />
             </n-icon>
           </template>
-          Create
+          Save
         </n-button>
       </div>
     </div>
@@ -51,45 +49,5 @@ const diaryTitle = computed(() => formatDateWithWeekday(date.value));
       :bordered="false"
       :resizable="false"
     />
-    <!-- <div class="flex i-center">
-      <div class="flex i-center g-8 input-label">
-        <n-icon size="14" class="flex">
-          <KeyOutline />
-        </n-icon>
-        <n-p>Secret key</n-p>
-      </div>
-      <n-input
-        placeholder="Secret key..."
-        class="input"
-        type="password"
-        show-password-on="click"
-      />
-    </div>
-
-    <div class="flex j-between i-center title-header">
-      <div class="flex i-center g-8">
-        <n-button type="error" class="g-4">
-          <template #icon>
-            <n-icon>
-              <SparklesOutline />
-            </n-icon>
-          </template>
-          Clear
-        </n-button>
-        <n-button
-          type="primary"
-          class="g-4"
-          :disabled="isDisabled"
-          @click="create"
-        >
-          <template #icon>
-            <n-icon>
-              <SaveOutline />
-            </n-icon>
-          </template>
-          Create
-        </n-button>
-      </div>
-    </div> -->
   </n-form>
 </template>
