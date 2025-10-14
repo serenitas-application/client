@@ -4,6 +4,10 @@ export const authApi = (transport) => ({
   logout: () => transport.post('/auth/logout'),
 });
 
+export const diaryApi = (transport) => ({
+  create: (payload) => transport.post('/diary', payload),
+});
+
 export const accountApi = (transport) => ({
   getAccountInfo: () => transport.get('/users'),
 });

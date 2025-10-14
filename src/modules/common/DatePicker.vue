@@ -4,7 +4,7 @@ import { NDatePicker, NPopover, NIcon, NButton } from 'naive-ui';
 import { CalendarClearOutline } from '@vicons/ionicons5';
 
 const selectedDate = defineModel({
-  type: String,
+  type: Date,
 });
 
 const showCalendar = ref(false);

@@ -4,6 +4,12 @@ import { computed, ref } from 'vue';
 import { formatDateWithWeekday } from '../../common/utils/dates';
 import { DatePicker } from '../common';
 import DiarySecretKey from './DiarySecretKey.vue';
+import { apiClient } from '../../api';
+import { useMutation } from '@tanstack/vue-query';
+import { useMessage } from 'naive-ui';
+import { encryptToLatin } from '../../crypto';
+
+const message = useMessage();
 
 const title = ref(new Date());
 const content = ref('');
@@ -11,6 +17,26 @@ const secretKey = ref('');
 
 const diaryTitle = computed(() => formatDateWithWeekday(title.value));
 const isDisabled = computed(() => !content.value);
+
+const prepareContentForSave = async () => {
+  if (!secretKey.value) return content.value;
+  return await encryptToLatin(content.value, secretKey.value);
+};
+
+const { mutate: createDiaryNote, isPending: isLoading } = useMutation({
+  mutationFn: async () => {
+    const res = await apiClient.diary.create({
+      title: title.value,
+      content: await prepareContentForSave(),
+    });
+
+    if (!res.data) throw new Error(res.message);
+    return res.data;
+  },
+  onError: (err) => {
+    message.error(err.message, { duration: 5000 });
+  },
+});
 </script>
 
 <template>
@@ -28,8 +54,8 @@ const isDisabled = computed(() => !content.value);
         <n-button
           type="primary"
           class="g-4"
-          :disabled="isDisabled"
-          @click="create"
+          :disabled="isDisabled || isLoading"
+          @click="createDiaryNote"
         >
           <template #icon>
             <n-icon>
