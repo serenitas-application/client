@@ -42,7 +42,7 @@ const clearSecret = () => {
       Click to set secret key
     </n-tooltip>
 
-    <n-modal v-model:show="secretKeyModal" class="secret-modalr">
+    <n-modal v-model:show="secretKeyModal" class="secret-modal">
       <n-card title="Secret key" class="flex col g-8">
         <n-input
           v-model:value="secretKey"

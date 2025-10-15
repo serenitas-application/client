@@ -28,6 +28,7 @@ const { mutate: createDiaryNote, isPending: isLoading } = useMutation({
     const res = await apiClient.diary.create({
       title: title.value,
       content: await prepareContentForSave(),
+      isPrivate: !!secretKey.value,
     });
 
     if (!res.data) throw new Error(res.message);
