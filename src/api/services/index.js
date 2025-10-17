@@ -1,13 +1,14 @@
-export const authApi = (transport) => ({
-  registration: (payload) => transport.post('/auth/registration', payload),
-  login: (payload) => transport.post('/auth/login', payload),
-  logout: () => transport.post('/auth/logout'),
+export const authApi = (transport, prefix) => ({
+  registration: (payload) => transport.post(`/${prefix}/registration`, payload),
+  login: (payload) => transport.post(`/${prefix}/login`, payload),
+  logout: () => transport.post(`/${prefix}/logout`),
 });
 
-export const diaryApi = (transport) => ({
-  create: (payload) => transport.post('/diary', payload),
+export const diaryApi = (transport, prefix) => ({
+  getDiaryRecords: () => transport.get(`/${prefix}/records`),
+  create: (payload) => transport.post(`/${prefix}`, payload),
 });
 
-export const accountApi = (transport) => ({
-  getAccountInfo: () => transport.get('/users'),
+export const accountApi = (transport, prefix) => ({
+  getAccountInfo: () => transport.get(`/${prefix}`),
 });
