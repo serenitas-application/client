@@ -7,6 +7,7 @@ export const authApi = (transport, prefix) => ({
 export const diaryApi = (transport, prefix) => ({
   getDiaryRecords: () => transport.get(`/${prefix}/records`),
   create: (payload) => transport.post(`/${prefix}`, payload),
+  getDiaryByDate: (date) => transport.get(`/${prefix}?date=${date}`),
 });
 
 export const accountApi = (transport, prefix) => ({
