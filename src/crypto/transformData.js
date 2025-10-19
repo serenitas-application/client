@@ -7,3 +7,21 @@ export const convertToLatin = (dataInBytes) => {
   });
   return res;
 };
+
+export const latinToBytes = (data) => {
+  const res = [];
+  data.forEach((ch) => {
+    const charCode = (ch.charCodeAt(0) - 256) % 256;
+    res.push(charCode);
+  });
+
+  return new Uint8Array(res);
+};
+
+export const dataToBytes = (data) => {
+  const dataArray = Array.from(data);
+  const code = dataArray[0].codePointAt(0);
+  if (!code) return new Uint8Array([]);
+
+  return latinToBytes(dataArray);
+};
