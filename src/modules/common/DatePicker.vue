@@ -1,30 +1,38 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { NDatePicker, NPopover, NIcon, NButton } from 'naive-ui';
 import { CalendarClearOutline } from '@vicons/ionicons5';
+import { formatDateToYMD } from '../../common/utils/dates';
 
-const selectedDate = defineModel({
-  type: Date,
+const { allowedDates = [] } = defineProps({
+  allowedDates: Array,
+});
+const selectedDate = defineModel('selectedDate', {
+  type: Number,
 });
 
 const showCalendar = ref(false);
-
-const allowedDates = ['2025-10-10', '2025-10-12', '2025-10-14'];
+const dates = ref([]);
 
 const disableNotAllowedDates = (ts) => {
-  const date = new Date(ts);
-  const y = date.getFullYear();
-  const m = String(date.getMonth() + 1).padStart(2, '0');
-  const d = String(date.getDate()).padStart(2, '0');
-  const formatted = `${y}-${m}-${d}`;
+  const formatted = formatDateToYMD(ts);
 
-  return !allowedDates.includes(formatted);
+  return !dates.value.includes(formatted);
 };
 
 const handleDateSelect = (value) => {
   selectedDate.value = value;
   showCalendar.value = false;
 };
+
+watch(
+  () => allowedDates,
+  (value) => {
+    if (!value?.length) return;
+    dates.value = [formatDateToYMD(Date.now()), ...value];
+  },
+  { immediate: true, deep: true },
+);
 </script>
 
 <template>
@@ -54,7 +62,6 @@ const handleDateSelect = (value) => {
         v-model:value="selectedDate"
         panel
         type="date"
-        :on-panel-update="handlePanelUpdate"
         :is-date-disabled="disableNotAllowedDates"
         @update:value="handleDateSelect"
       />
