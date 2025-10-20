@@ -6,6 +6,13 @@
 .clear-input.n-input--focus {
     background-color: transparent !important;
 }
+
 .input-icon {
     margin-right: 12px; 
+}
+.icon-button {
+    padding: 0 8px
+}
+.line {
+    margin: 12px 0 !important;
 }
