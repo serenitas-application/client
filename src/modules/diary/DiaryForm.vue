@@ -6,26 +6,26 @@ import { SecretKeySet } from '../common/secret-key';
 
 const {
   diaryRecords = [],
-  diary = null,
   isLoading,
+  isReadonly,
+  recordsLoading,
 } = defineProps({
   diaryRecords: { type: Array },
-  diary: { type: Object },
   isLoading: { type: Boolean },
+  isReadonly: { type: Boolean },
+  recordsLoading: { type: Boolean },
 });
 
 defineEmits({ onClick: null });
 
 const selectedDate = defineModel('selectedDate', { type: Number });
-const title = defineModel('title', { type: [String, Number, Date] });
+const title = defineModel('title', { type: String });
 const content = defineModel('content', { type: String });
 const secretKey = defineModel('secret', { type: String });
 
 const diaryTitle = computed(() =>
   formatDateWithWeekday(title.value ?? selectedDate.value),
 );
-
-const isContentReadonly = computed(() => !!diary && !!diary.content);
 </script>
 
 <template>
@@ -38,11 +38,12 @@ const isContentReadonly = computed(() => !!diary && !!diary.content);
         <DatePicker
           v-model:title="title"
           v-model:selected-date="selectedDate"
+          :is-loading="recordsLoading"
           :allowed-dates="diaryRecords"
         />
       </div>
       <div class="flex a-center g-12">
-        <SecretKeySet v-if="!isContentReadonly" v-model:secret="secretKey" />
+        <SecretKeySet v-if="!isReadonly" v-model:secret="secretKey" />
         <slot name="actions" />
       </div>
     </div>
@@ -59,7 +60,7 @@ const isContentReadonly = computed(() => !!diary && !!diary.content);
             class="textarea clear-input"
             :bordered="false"
             :resizable="false"
-            :readonly="isContentReadonly"
+            :readonly="isReadonly"
           />
         </slot>
       </n-spin>

@@ -46,9 +46,9 @@ const clearSecret = () => {
       <n-card title="Secret key" class="flex col g-8">
         <n-input
           v-model:value="secretKey"
+          class="inp"
           type="password"
           placeholder="Enter secret key"
-          style="margin-bottom: 24px"
         />
         <div class="flex j-between a-center">
           <n-button type="error" ghost @click="clearSecret">
@@ -66,5 +66,8 @@ const clearSecret = () => {
 <style scoped>
 .secret-modal {
   max-width: 400px;
+}
+.inp {
+  margin-bottom: 24px;
 }
 </style>

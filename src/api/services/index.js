@@ -6,8 +6,10 @@ export const authApi = (transport, prefix) => ({
 
 export const diaryApi = (transport, prefix) => ({
   getDiaryRecords: () => transport.get(`/${prefix}/records`),
-  create: (payload) => transport.post(`/${prefix}`, payload),
   getDiaryByDate: (date) => transport.get(`/${prefix}?date=${date}`),
+  create: (payload) => transport.post(`/${prefix}`, payload),
+  update: (id, payload) => transport.patch(`/${prefix}/${id}`, payload),
+  delete: (id) => transport.delete(`/${prefix}/${id}`),
 });
 
 export const accountApi = (transport, prefix) => ({

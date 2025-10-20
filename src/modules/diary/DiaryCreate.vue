@@ -4,16 +4,19 @@ import { useMutation } from '@tanstack/vue-query';
 import { apiClient } from '../../api';
 import { useMessage } from 'naive-ui';
 import { encryptToLatin } from '../../crypto';
+import { computed } from 'vue';
 
 const message = useMessage();
 
-const title = defineModel('title', { type: [String, Number, Date] });
+const title = defineModel('title', { type: String });
 const content = defineModel('content', { type: String });
 const secret = defineModel('secret', { type: String });
 
 const emit = defineEmits({
   onSuccess: null,
 });
+
+const isDisabled = computed(() => !title.value || !content.value);
 
 const prepareContentForSave = async () => {
   if (!secret.value) return content.value;
@@ -29,7 +32,7 @@ const { mutate: createDiaryNote, isPending: isLoading } = useMutation({
     });
 
     if (!res.data) throw new Error(res.message);
-    message.success('Created', { duration: 5000 });
+    message.success('Entity created successfully', { duration: 5000 });
     emit('onSuccess');
     return res.data;
   },
@@ -43,7 +46,7 @@ const { mutate: createDiaryNote, isPending: isLoading } = useMutation({
   <n-button
     type="primary"
     class="g-4"
-    :disabled="isLoading"
+    :disabled="isDisabled || isLoading"
     @click="createDiaryNote"
   >
     <template #icon>

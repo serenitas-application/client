@@ -4,8 +4,9 @@ import { NDatePicker, NPopover, NIcon, NButton } from 'naive-ui';
 import { CalendarClearOutline } from '@vicons/ionicons5';
 import { formatDateToYMD } from '../../common/utils/dates';
 
-const { allowedDates = [] } = defineProps({
+const { allowedDates = [], isLoading } = defineProps({
   allowedDates: Array,
+  isLoading: Boolean,
 });
 const selectedDate = defineModel('selectedDate', {
   type: Number,
@@ -57,7 +58,7 @@ watch(
       </n-tooltip>
     </template>
 
-    <div>
+    <n-spin :show="isLoading">
       <n-date-picker
         v-model:value="selectedDate"
         panel
@@ -65,6 +66,6 @@ watch(
         :is-date-disabled="disableNotAllowedDates"
         @update:value="handleDateSelect"
       />
-    </div>
+    </n-spin>
   </n-popover>
 </template>
