@@ -13,7 +13,7 @@ const auth = useAuth();
 const onLogout = async () => {
   await apiClient.auth.logout();
   auth.logout();
-  router.push(RoutePaths.login);
+  router.push(RoutePaths.login.path);
 };
 </script>
 

@@ -44,7 +44,6 @@ const { mutate: onLogin, isPending: isLoading } = useMutation({
     <template #body>
       <n-input
         v-model:value="email"
-        size="large"
         type="email"
         pattern=".+@.+"
         autocomplete="email"
@@ -56,7 +55,6 @@ const { mutate: onLogin, isPending: isLoading } = useMutation({
       </n-input>
       <n-input
         v-model:value="password"
-        size="large"
         type="password"
         show-password-on="click"
         placeholder="Password"
@@ -73,7 +71,6 @@ const { mutate: onLogin, isPending: isLoading } = useMutation({
           </router-link>
         </n-p>
         <n-button
-          size="large"
           type="primary"
           class="w-full"
           attr-type="submit"
