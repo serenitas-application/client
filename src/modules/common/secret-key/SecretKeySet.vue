@@ -19,9 +19,14 @@ const clearSecret = () => {
   <div>
     <n-tooltip v-if="secretKey" trigger="hover">
       <template #trigger>
-        <n-button class="icon-button" quaternary @click="secretKeyModal = true">
+        <n-button
+          class="icon-button"
+          type="success"
+          quaternary
+          @click="secretKeyModal = true"
+        >
           <template #icon>
-            <AppIcon :icon="LockKeyholeIcon" />
+            <AppIcon :icon="LockKeyholeIcon" :size="24" />
           </template>
         </n-button>
       </template>
@@ -30,7 +35,12 @@ const clearSecret = () => {
 
     <n-tooltip v-else trigger="hover">
       <template #trigger>
-        <n-button class="icon-button" quaternary @click="secretKeyModal = true">
+        <n-button
+          class="icon-button"
+          type="error"
+          quaternary
+          @click="secretKeyModal = true"
+        >
           <template #icon>
             <AppIcon :icon="LockKeyholeOpenIcon" :size="24" />
           </template>
