@@ -1,26 +1,25 @@
 <script setup>
-import { computed, ref } from "vue";
-import { CalendarNumberOutline, KeyOutline, SparklesOutline, SaveOutline } from "@vicons/ionicons5";
-import { NIcon } from "naive-ui";
+import { computed, ref } from 'vue';
+import { NIcon } from 'naive-ui';
 
 const { moods } = defineModel({
   moods: [],
 });
 
 const moodsOptions = [
-  { label: "Злість", value: "diary" },
-  { label: "Радість", value: "private" },
-  { label: "Сум", value: "work" },
+  { label: 'Злість', value: 'diary' },
+  { label: 'Радість', value: 'private' },
+  { label: 'Сум', value: 'work' },
 ];
 
 const groupOptions = [
-  { label: "Щоденник", value: "diary" },
-  { label: "Особисте", value: "private" },
-  { label: "Робота", value: "work" },
+  { label: 'Щоденник', value: 'diary' },
+  { label: 'Особисте', value: 'private' },
+  { label: 'Робота', value: 'work' },
 ];
 
-const title = ref("");
-const content = ref("");
+const title = ref('');
+const content = ref('');
 
 const isDisabled = computed(() => {
   return !title.value || !content.value;
@@ -46,7 +45,12 @@ const isDisabled = computed(() => {
           </template>
           Clear
         </n-button>
-        <n-button type="primary" class="g-4" :disabled="isDisabled" @click="create">
+        <n-button
+          type="primary"
+          class="g-4"
+          :disabled="isDisabled"
+          @click="create"
+        >
           <template #icon>
             <n-icon>
               <SaveOutline />
@@ -59,9 +63,6 @@ const isDisabled = computed(() => {
 
     <div class="flex i-center">
       <div class="flex i-center g-8 input-label">
-        <n-icon size="14" class="flex">
-          <CalendarNumberOutline />
-        </n-icon>
         <n-p>Date</n-p>
       </div>
       <n-date-picker class="clean-input input" />
@@ -69,9 +70,6 @@ const isDisabled = computed(() => {
 
     <div class="flex i-center">
       <div class="flex i-center g-8 input-label">
-        <n-icon size="14" class="flex">
-          <SparklesOutline />
-        </n-icon>
         <n-p>Moods</n-p>
       </div>
       <n-select
@@ -86,9 +84,6 @@ const isDisabled = computed(() => {
 
     <div class="flex i-center">
       <div class="flex i-center g-8 input-label">
-        <n-icon size="14" class="flex">
-          <SparklesOutline />
-        </n-icon>
         <n-p>Groupe</n-p>
       </div>
       <n-select v-model:value="groups" :options="groupOptions" class="input" />
@@ -96,12 +91,14 @@ const isDisabled = computed(() => {
 
     <div class="flex i-center">
       <div class="flex i-center g-8 input-label">
-        <n-icon size="14" class="flex">
-          <KeyOutline />
-        </n-icon>
         <n-p>Secret key</n-p>
       </div>
-      <n-input placeholder="Secret key..." class="input" type="password" show-password-on="click" />
+      <n-input
+        placeholder="Secret key..."
+        class="input"
+        type="password"
+        show-password-on="click"
+      />
     </div>
 
     <n-divider class="line" />
@@ -142,8 +139,5 @@ const isDisabled = computed(() => {
 .input {
   width: 100%;
   max-width: 300px;
-}
-.line {
-  margin: 12px 0;
 }
 </style>

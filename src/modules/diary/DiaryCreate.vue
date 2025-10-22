@@ -1,10 +1,11 @@
 <script setup>
-import { SaveOutline } from '@vicons/ionicons5';
 import { useMutation } from '@tanstack/vue-query';
 import { apiClient } from '../../api';
 import { useMessage } from 'naive-ui';
 import { encryptToLatin } from '../../crypto';
 import { computed } from 'vue';
+import AppIcon from '../common/AppIcon.vue';
+import { SaveIcon } from 'lucide-vue-next';
 
 const message = useMessage();
 
@@ -50,9 +51,7 @@ const { mutate: createDiaryNote, isPending: isLoading } = useMutation({
     @click="createDiaryNote"
   >
     <template #icon>
-      <n-icon>
-        <SaveOutline />
-      </n-icon>
+      <AppIcon :icon="SaveIcon" />
     </template>
     Save
   </n-button>

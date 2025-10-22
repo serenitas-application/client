@@ -1,23 +1,30 @@
 <script setup>
-import { computed } from "vue";
-import { useUISettingsStore } from "../../stores/uiSettings";
-import { SunnyOutline, MoonOutline } from "@vicons/ionicons5";
+import { computed } from 'vue';
+import AppIcon from './AppIcon.vue';
+import { MoonIcon, SunIcon } from 'lucide-vue-next';
+import { useUISettingsStore } from '../../stores/uiSettings';
 
 const uiSettingsStore = useUISettingsStore();
 
-const isThemeDark = computed(() => uiSettingsStore.theme === "dark");
+const isThemeDark = computed(() => uiSettingsStore.theme === 'dark');
 </script>
 
 <template>
   <div>
     <n-tooltip trigger="hover">
       <template #trigger>
-        <n-icon v-if="isThemeDark" class="pointer" :size="22" @click="uiSettingsStore.switchTheme">
-          <MoonOutline />
-        </n-icon>
-        <n-icon v-else class="pointer" :size="22" @click="uiSettingsStore.switchTheme">
-          <SunnyOutline />
-        </n-icon>
+        <AppIcon
+          v-if="isThemeDark"
+          class="pointer"
+          :icon="MoonIcon"
+          @click="uiSettingsStore.switchTheme"
+        />
+        <AppIcon
+          v-else
+          class="pointer"
+          :icon="SunIcon"
+          @click="uiSettingsStore.switchTheme"
+        />
       </template>
       Change theme
     </n-tooltip>

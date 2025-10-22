@@ -1,6 +1,7 @@
 <script setup>
-import { LockClosedOutline, LockOpenOutline } from '@vicons/ionicons5';
 import { ref } from 'vue';
+import AppIcon from '../AppIcon.vue';
+import { LockKeyholeIcon, LockKeyholeOpenIcon } from 'lucide-vue-next';
 
 const secretKey = defineModel('secret', {
   type: String,
@@ -20,9 +21,7 @@ const clearSecret = () => {
       <template #trigger>
         <n-button class="icon-button" quaternary @click="secretKeyModal = true">
           <template #icon>
-            <n-icon size="24">
-              <LockClosedOutline />
-            </n-icon>
+            <AppIcon :icon="LockKeyholeIcon" />
           </template>
         </n-button>
       </template>
@@ -33,9 +32,7 @@ const clearSecret = () => {
       <template #trigger>
         <n-button class="icon-button" quaternary @click="secretKeyModal = true">
           <template #icon>
-            <n-icon size="24">
-              <LockOpenOutline />
-            </n-icon>
+            <AppIcon :icon="LockKeyholeOpenIcon" :size="24" />
           </template>
         </n-button>
       </template>

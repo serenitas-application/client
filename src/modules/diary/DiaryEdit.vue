@@ -1,11 +1,12 @@
 <script setup>
-import { CloseOutline, SaveOutline } from '@vicons/ionicons5';
 import { useMutation } from '@tanstack/vue-query';
 import { useMessage } from 'naive-ui';
 import { encryptToLatin } from '../../crypto';
 import { computed } from 'vue';
 import { modsList } from './action-mods';
 import { apiClient } from '../../api';
+import AppIcon from '../common/AppIcon.vue';
+import { SaveIcon, XIcon } from 'lucide-vue-next';
 
 const message = useMessage();
 
@@ -59,9 +60,7 @@ const { mutate: editDiaryNote, isPending: isLoading } = useMutation({
       @click="cancelEdit"
     >
       <template #icon>
-        <n-icon>
-          <CloseOutline />
-        </n-icon>
+        <AppIcon :icon="XIcon" />
       </template>
       Cancel
     </n-button>
@@ -72,9 +71,7 @@ const { mutate: editDiaryNote, isPending: isLoading } = useMutation({
       @click="editDiaryNote"
     >
       <template #icon>
-        <n-icon>
-          <SaveOutline />
-        </n-icon>
+        <AppIcon :icon="SaveIcon" />
       </template>
       Save
     </n-button>

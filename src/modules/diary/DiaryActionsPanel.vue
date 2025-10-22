@@ -1,6 +1,7 @@
 <script setup>
-import { PencilOutline, TrashOutline } from '@vicons/ionicons5';
 import { modsList } from './action-mods';
+import { SquarePen, Trash } from 'lucide-vue-next';
+import AppIcon from '../common/AppIcon.vue';
 
 const mode = defineModel('mode', { type: String });
 </script>
@@ -11,9 +12,7 @@ const mode = defineModel('mode', { type: String });
       <template #trigger>
         <n-button class="icon-button" quaternary @click="mode = modsList.edit">
           <template #icon>
-            <n-icon size="24">
-              <PencilOutline />
-            </n-icon>
+            <AppIcon :icon="SquarePen" />
           </template>
         </n-button>
       </template>
@@ -28,9 +27,7 @@ const mode = defineModel('mode', { type: String });
           @click="mode = modsList.delete"
         >
           <template #icon>
-            <n-icon size="24">
-              <TrashOutline />
-            </n-icon>
+            <AppIcon :icon="Trash" />
           </template>
         </n-button>
       </template>

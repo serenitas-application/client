@@ -5,11 +5,14 @@ import { apiClient } from '../../../api';
 import { useMessage } from 'naive-ui';
 import { useRouter } from 'vue-router';
 import {
-  LockClosedOutline,
-  MailOutline,
-  PersonOutline,
-} from '@vicons/ionicons5';
+  AtSign,
+  ChevronLeft,
+  ChevronRight,
+  LockIcon,
+  User,
+} from 'lucide-vue-next';
 import AuthForm from '../common/AuthForm.vue';
+import AppIcon from '../../common/AppIcon.vue';
 
 const formStages = {
   user: 'user',
@@ -67,19 +70,17 @@ const onFormNavigate = (value) => {
           <div class="fields flex col g-16">
             <n-input
               v-model:value="username"
-              size="large"
               type="text"
               placeholder="Username"
               @keyup.enter="onFormNavigate(formStages.password)"
             >
               <template #prefix>
-                <n-icon :component="PersonOutline" class="input-icon" />
+                <AppIcon :icon="User" class="input-icon" />
               </template>
             </n-input>
 
             <n-input
               v-model:value="email"
-              size="large"
               type="email"
               pattern=".+@.+"
               autocomplete="email"
@@ -87,20 +88,19 @@ const onFormNavigate = (value) => {
               @keyup.enter="onFormNavigate(formStages.password)"
             >
               <template #prefix>
-                <n-icon :component="MailOutline" class="input-icon" />
+                <AppIcon :icon="AtSign" class="input-icon" />
               </template>
             </n-input>
           </div>
 
           <n-button
             ghost
-            size="large"
             type="primary"
             class="w-full"
             :disabled="isNextDisabled"
             @click="onFormNavigate(formStages.password)"
           >
-            Next >
+            Next <AppIcon :icon="ChevronRight" :size="16" />
           </n-button>
         </div>
 
@@ -112,26 +112,24 @@ const onFormNavigate = (value) => {
             <n-input
               v-model:value="password"
               :type="showPassword ? 'text' : 'password'"
-              size="large"
               placeholder="Password"
               :minlength="4"
               :maxlength="16"
             >
               <template #prefix>
-                <n-icon :component="LockClosedOutline" class="input-icon" />
+                <AppIcon :icon="LockIcon" class="input-icon" />
               </template>
             </n-input>
 
             <n-input
               v-model:value="repeat"
               :type="showPassword ? 'text' : 'password'"
-              size="large"
               placeholder="Repeat"
               :minlength="4"
               :maxlength="16"
             >
               <template #prefix>
-                <n-icon :component="LockClosedOutline" class="input-icon" />
+                <AppIcon :icon="LockIcon" class="input-icon" />
               </template>
             </n-input>
 
@@ -144,7 +142,6 @@ const onFormNavigate = (value) => {
             <n-button
               type="primary"
               class="w-full"
-              size="large"
               attr-type="submit"
               :disabled="isSubmitDisabled"
               @click="onRegistration"
@@ -152,13 +149,12 @@ const onFormNavigate = (value) => {
               Sign Up
             </n-button>
             <n-button
-              size="large"
               type="primary"
               class="w-full"
               ghost
               @click="onFormNavigate(formStages.user)"
             >
-              Back
+              <AppIcon :icon="ChevronLeft" :size="16" /> Back
             </n-button>
           </div>
         </div>
@@ -166,9 +162,7 @@ const onFormNavigate = (value) => {
       <n-p align="center">
         Already have an account?
         <router-link :to="RoutePaths.login.path">
-          <n-text type="primary" strong>
-            Sign in
-          </n-text>
+          <n-text type="primary" strong> Sign in </n-text>
         </router-link>
       </n-p>
     </template>
