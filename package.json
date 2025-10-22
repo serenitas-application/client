@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@tanstack/vue-query": "^5.87.4",
-    "@vicons/ionicons5": "^0.13.0",
+    "lucide-vue-next": "^0.546.0",
     "naive-ui": "^2.42.0",
     "pinia": "^3.0.3",
     "vue": "^3.5.18",

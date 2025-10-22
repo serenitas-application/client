@@ -1,14 +1,4 @@
 <script setup>
-import {
-  BookmarkOutline,
-  CaretDownOutline,
-  BookOutline,
-  CalendarNumberOutline,
-  SettingsOutline,
-  PersonOutline,
-  JournalOutline,
-  GridOutline,
-} from '@vicons/ionicons5';
 import { NIcon } from 'naive-ui';
 import { computed, h } from 'vue';
 import { RouterLink } from 'vue-router';
@@ -16,6 +6,14 @@ import { useUISettingsStore } from '../../stores/uiSettings';
 import { RoutePaths } from '../../router/routes';
 import { useRoute } from 'vue-router';
 import SerenitasLogo from '../../assets/serenitas_logo.svg';
+import {
+  LayoutGridIcon,
+  BoltIcon,
+  BookHeartIcon,
+  NotebookIcon,
+  CalendarClockIcon,
+  SquareUserIcon,
+} from 'lucide-vue-next';
 
 const menuOptions = [
   {
@@ -81,20 +79,20 @@ function renderMenuLabel(option) {
 
 function renderMenuIcon(option) {
   const map = {
-    home: GridOutline,
-    account: PersonOutline,
-    pages: JournalOutline,
-    diary: BookOutline,
-    schedule: CalendarNumberOutline,
-    settings: SettingsOutline,
+    home: LayoutGridIcon,
+    account: SquareUserIcon,
+    pages: NotebookIcon,
+    diary: BookHeartIcon,
+    schedule: CalendarClockIcon,
+    settings: BoltIcon,
   };
 
-  const Icon = map[option.key] || BookmarkOutline;
-  return h(NIcon, null, { default: () => h(Icon) });
+  const Icon = map[option.key] || NotebookIcon;
+  return h(NIcon, null, { default: () => h(Icon, { 'stroke-width': 1.5 }) });
 }
 
 function expandIcon() {
-  return h(NIcon, null, { default: () => h(CaretDownOutline) });
+  return h(NIcon, null, { default: () => h(NotebookIcon) });
 }
 </script>
 
@@ -116,7 +114,6 @@ function expandIcon() {
       :options="titleOptions"
       :expand-icon="expandIcon"
       style="pointer-events: none"
-      class="logoc"
     />
     <n-menu
       :collapsed="uiSettings.sidebarState"

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import RegistrationForm from "./RegistrationForm.vue";
+import RegistrationForm from './RegistrationForm.vue';
 </script>
 
 <template>
@@ -11,6 +11,6 @@ import RegistrationForm from "./RegistrationForm.vue";
 <style scoped>
 .registration {
   height: fit-content;
-  max-width: 500px;
+  max-width: 450px;
 }
 </style>

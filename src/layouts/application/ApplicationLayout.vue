@@ -17,7 +17,7 @@ onMounted(async () => {
   if (!result.data) {
     await apiClient.auth.logout();
     auth.logout();
-    router.push(RoutePaths.login);
+    router.push(RoutePaths.login.path);
     return message.error(result.message, { duration: 5000 });
   }
   auth.login(result.data);

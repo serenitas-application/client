@@ -1,8 +1,8 @@
 <script setup>
 import { ref, watch } from 'vue';
-import { NDatePicker, NPopover, NIcon, NButton } from 'naive-ui';
-import { CalendarClearOutline } from '@vicons/ionicons5';
 import { formatDateToYMD } from '../../common/utils/dates';
+import AppIcon from './AppIcon.vue';
+import { CalendarIcon } from 'lucide-vue-next';
 
 const { allowedDates = [], isLoading } = defineProps({
   allowedDates: Array,
@@ -48,9 +48,7 @@ watch(
         <template #trigger>
           <n-button class="icon-button" quaternary>
             <template #icon>
-              <n-icon size="24">
-                <CalendarClearOutline />
-              </n-icon>
+              <AppIcon :icon="CalendarIcon" />
             </template>
           </n-button>
         </template>

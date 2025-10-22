@@ -4,10 +4,11 @@ import { RoutePaths } from '../../../router/routes';
 import { apiClient } from '../../../api';
 import { useMessage } from 'naive-ui';
 import { useRouter } from 'vue-router';
-import { MailOutline, LockClosedOutline } from '@vicons/ionicons5';
+import { AtSign, LockIcon } from 'lucide-vue-next';
 import { useAuth } from '../../../composables/auth';
 import AuthForm from '../common/AuthForm.vue';
 import { useMutation } from '@tanstack/vue-query';
+import AppIcon from '../../common/AppIcon.vue';
 
 const message = useMessage();
 const auth = useAuth();
@@ -44,25 +45,23 @@ const { mutate: onLogin, isPending: isLoading } = useMutation({
     <template #body>
       <n-input
         v-model:value="email"
-        size="large"
         type="email"
         pattern=".+@.+"
         autocomplete="email"
         placeholder="Email"
       >
         <template #prefix>
-          <n-icon :component="MailOutline" class="input-icon" />
+          <AppIcon :icon="AtSign" class="input-icon" />
         </template>
       </n-input>
       <n-input
         v-model:value="password"
-        size="large"
         type="password"
         show-password-on="click"
         placeholder="Password"
       >
         <template #prefix>
-          <n-icon :component="LockClosedOutline" class="input-icon" />
+          <AppIcon :icon="LockIcon" class="input-icon" />
         </template>
       </n-input>
 
@@ -73,7 +72,6 @@ const { mutate: onLogin, isPending: isLoading } = useMutation({
           </router-link>
         </n-p>
         <n-button
-          size="large"
           type="primary"
           class="w-full"
           attr-type="submit"

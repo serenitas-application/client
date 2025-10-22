@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import LoginForm from "./LoginForm.vue";
+import LoginForm from './LoginForm.vue';
 </script>
 
 <template>
@@ -11,6 +11,6 @@ import LoginForm from "./LoginForm.vue";
 <style scoped>
 .login {
   height: fit-content;
-  max-width: 500px;
+  max-width: 450px;
 }
 </style>
