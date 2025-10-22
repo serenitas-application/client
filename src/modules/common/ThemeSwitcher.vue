@@ -15,12 +15,14 @@ const isThemeDark = computed(() => uiSettingsStore.theme === 'dark');
       <template #trigger>
         <AppIcon
           v-if="isThemeDark"
+          :size="22"
           class="pointer"
           :icon="MoonIcon"
           @click="uiSettingsStore.switchTheme"
         />
         <AppIcon
           v-else
+          :size="22"
           class="pointer"
           :icon="SunIcon"
           @click="uiSettingsStore.switchTheme"
