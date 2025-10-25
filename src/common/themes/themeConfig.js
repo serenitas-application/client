@@ -145,7 +145,7 @@ export const themeConfig = (PALETTE) => ({
     borderRadius: RADIUS.lg,
   },
   Divider: {
-    color: PALETTE.surface,
+    color: PALETTE.divider,
   },
   Typography: {
     pMargin: '0',
