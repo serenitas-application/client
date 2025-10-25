@@ -63,6 +63,9 @@ const { mutate: onRegistration, isPending: isLoading } = useMutation({
     router.push(RoutePaths.main);
   },
   onSuccess: () => {
+    message.success('Account successfuly created🎉 Please, try to login now', {
+      duration: 7000,
+    });
     router.push(RoutePaths.login.path);
   },
   onError: (err) => {
@@ -269,6 +272,6 @@ const onFormNavigate = (value) => {
 
 <style scoped>
 .fields {
-  margin: 8px 0;
+  margin-bottom: 8px;
 }
 </style>
