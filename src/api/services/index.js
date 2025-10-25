@@ -1,6 +1,8 @@
 export const authApi = (transport, prefix) => ({
   registration: (payload) => transport.post(`/${prefix}/registration`, payload),
   login: (payload) => transport.post(`/${prefix}/login`, payload),
+  sendToken: (payload) => transport.post(`/${prefix}/send-token`, payload),
+  verifyToken: (payload) => transport.post(`/${prefix}/verify-token`, payload),
   logout: () => transport.post(`/${prefix}/logout`),
 });
 
