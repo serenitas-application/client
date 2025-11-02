@@ -29,7 +29,6 @@ const handleDateSelect = (value) => {
 watch(
   () => allowedDates,
   (value) => {
-    if (!value?.length) return;
     dates.value = [formatDateToYMD(Date.now()), ...value];
   },
   { immediate: true, deep: true },
