@@ -1,3 +1,9 @@
+<script setup lang="ts">
+import AccountCard from './AccountCard.vue';
+</script>
+
 <template>
-  <div>Account Page</div>
+  <section>
+    <AccountCard />
+  </section>
 </template>
