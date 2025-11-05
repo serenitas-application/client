@@ -47,7 +47,9 @@ const { mutate: deleteDiaryNote, isPending: isLoading } = useMutation({
   <n-modal v-model:show="isVisible" class="delete-modal">
     <n-card :title="deleteTitle" class="flex col g-8">
       <n-p class="text">
-        Warning: deletion is <b>permanent</b> and <b>irreversible</b>.
+        Warning: deletion is
+        <n-text strong type="error"> permanent </n-text> and
+        <n-text strong type="error"> irreversible </n-text>.
       </n-p>
 
       <div class="flex j-between a-center">
