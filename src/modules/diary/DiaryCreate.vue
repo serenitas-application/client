@@ -35,12 +35,19 @@ const { mutate: createDiaryNote, isPending: isLoading } = useMutation({
     if (!res.data) throw new Error(res.message);
     message.success('Entity created successfully', { duration: 5000 });
     emit('onSuccess');
+    resetFields();
     return res.data;
   },
   onError: (err) => {
     message.error(err.message, { duration: 5000 });
   },
 });
+
+const resetFields = () => {
+  title.value = '';
+  content.value = '';
+  secret.value = '';
+};
 </script>
 
 <template>

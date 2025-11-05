@@ -65,12 +65,15 @@ const { data: diaryData, isLoading } = useQuery({
     const data = await getDiaryByDate();
     if (!data) {
       hasRecord.value = false;
+      isDiaryPrivate.value = false;
       isFormReadonly.value = false;
 
       diary.value.id = 0;
       diary.value.title = String(new Date());
       diary.value.content = '';
       diary.value.originContent = '';
+
+      mode.value = modsList.create;
 
       return data;
     }
@@ -97,9 +100,9 @@ watch(mode, (newMode, oldMode) => {
   if (oldMode === modsList.edit && diary.value.decryptedContent) {
     diary.value.content = diary.value.decryptedContent;
   }
-  if (newMode === modsList.edit) {
-    isFormReadonly.value = false;
-  }
+
+  isFormReadonly.value =
+    newMode === modsList.view || newMode == modsList.delete;
 });
 
 watch(
@@ -136,7 +139,6 @@ watch(
           v-model:secret="diary.secret"
           @on-success="onSuccess"
         />
-
         <DiaryEdit
           v-if="mode === modsList.edit"
           v-model:diary="diary"
@@ -152,7 +154,6 @@ watch(
           @on-success="onSuccess"
         />
       </template>
-
       <template #content>
         <div v-if="isDiaryPrivate" class="content">
           <SecretKeyCheck
