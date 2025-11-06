@@ -1,3 +1,3 @@
 <template>
-  <div>Schedule</div>
+  <div>Tracker</div>
 </template>
