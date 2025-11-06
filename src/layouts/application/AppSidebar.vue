@@ -22,9 +22,9 @@ const menuOptions = [
     to: RoutePaths.main.path,
   },
   {
-    label: 'Schedule',
-    key: RoutePaths.schedule.name,
-    to: RoutePaths.schedule.path,
+    label: 'Tracker',
+    key: RoutePaths.tracker.name,
+    to: RoutePaths.tracker.path,
   },
   {
     label: 'Pages',
@@ -65,7 +65,8 @@ const currentMenuKey = computed(() => {
   if (p === RoutePaths.main.path) return RoutePaths.main.name;
   if (p.startsWith(RoutePaths.account.path)) return RoutePaths.account.name;
   if (p.startsWith(RoutePaths.pages.path)) return RoutePaths.pages.name;
-  if (p.startsWith(RoutePaths.schedule.path)) return RoutePaths.schedule.name;
+  if (p.startsWith(RoutePaths.diary.path)) return RoutePaths.diary.name;
+  if (p.startsWith(RoutePaths.tracker.path)) return RoutePaths.tracker.name;
   if (p.startsWith(RoutePaths.settings.path)) return RoutePaths.settings.name;
   return undefined;
 });
@@ -83,7 +84,7 @@ function renderMenuIcon(option) {
     account: SquareUserIcon,
     pages: NotebookIcon,
     diary: BookHeartIcon,
-    schedule: CalendarClockIcon,
+    tracker: CalendarClockIcon,
     settings: BoltIcon,
   };
 
