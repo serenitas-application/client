@@ -111,7 +111,7 @@ watch(
 </script>
 
 <template>
-  <section>
+  <section class="diary-page">
     <DiaryForm
       v-model:selected-date="selectedDate"
       v-model:title="diary.title"
@@ -122,6 +122,7 @@ watch(
       :records-loading="recordsLoading"
       :diary-records="diaryDateRecords"
       :diary="diaryData"
+      class="diary-block"
     >
       <template #actions>
         <DiaryActionsPanel
@@ -168,6 +169,15 @@ watch(
 </template>
 
 <style scoped>
+.diary-page {
+  display: flex;
+  justify-content: center;
+}
+
+.diary-block {
+  width: 100%;
+  max-width: 650px;
+}
 .card {
   max-width: 400px;
 }
