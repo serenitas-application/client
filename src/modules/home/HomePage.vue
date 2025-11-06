@@ -1,5 +1,9 @@
-<script setup></script>
+<script setup>
+import DiaryWidget from '../diary/DiaryWidget.vue';
+</script>
 
 <template>
-  <div>Home</div>
+  <section>
+    <DiaryWidget />
+  </section>
 </template>
