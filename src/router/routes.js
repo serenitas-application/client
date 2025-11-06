@@ -31,9 +31,9 @@ export const RoutePaths = {
     path: '/diary',
     auth: true,
   },
-  schedule: {
-    name: 'schedule',
-    path: '/schedule',
+  tracker: {
+    name: 'tracker',
+    path: '/tracker',
     auth: true,
   },
   notes: {
@@ -73,10 +73,10 @@ export const routes = [
     meta: { layout: 'application', requiresAuth: RoutePaths.main.auth },
   },
   {
-    path: RoutePaths.schedule.path,
-    name: RoutePaths.schedule.name,
-    component: () => import('../modules/schedule/SchedulePage.vue'),
-    meta: { layout: 'application', requiresAuth: RoutePaths.schedule.auth },
+    path: RoutePaths.tracker.path,
+    name: RoutePaths.tracker.name,
+    component: () => import('../modules/tracker/TrackerPage.vue'),
+    meta: { layout: 'application', requiresAuth: RoutePaths.tracker.auth },
   },
   {
     path: RoutePaths.diary.path,
