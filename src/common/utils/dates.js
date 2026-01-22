@@ -1,4 +1,5 @@
 export const formatDateWithWeekday = (date) => {
+  if (!date) return '-';
   const weekdays = [
     'Неділя',
     'Понеділок',
